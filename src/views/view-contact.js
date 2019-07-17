@@ -1,13 +1,14 @@
 import { LitElement, html, css } from 'lit-element';
+import { miCSS } from '../css.js';
 
 class ViewContact  extends LitElement {
 
   static get styles() {
-    return css`
+    return [miCSS, css`
       :host {
         display: block;
       }
-    `;
+    `];
   }
 
   render() {

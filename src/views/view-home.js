@@ -1,22 +1,14 @@
 import { LitElement, html, css } from 'lit-element';
+import { miCSS } from '../css.js';
 
 class ViewHome  extends LitElement {
 
   static get styles() {
-    return css`
+    return [miCSS, css`
       :host {
         display: block;
       }
-    `;
-  }
-
-  /**
-    * Object describing property-related metadata used by Polymer features
-    */
-  static get properties() {
-    return {
-      texto: { type: String }
-    };
+    `];
   }
 
   render() {
@@ -25,7 +17,6 @@ class ViewHome  extends LitElement {
         <h2>Home</h2>
       </div>
       <p>Esto es el home!!!</p>
-      <input type="text" value="${this.texto}">
     `;
   }
 }
