@@ -1,14 +1,13 @@
 import { LitElement, html, css } from 'lit-element';
-import { miCSS } from '../css.js';
 
 class ViewHome  extends LitElement {
 
   static get styles() {
-    return [miCSS, css`
+    return css`
       :host {
         display: block;
       }
-    `];
+    `;
   }
 
   render() {

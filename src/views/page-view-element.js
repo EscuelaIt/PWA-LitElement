@@ -11,9 +11,4 @@ export class PageViewElement extends LitElement {
       active: { type: Boolean }
     }
   }
-
-  constructor() {
-    super();
-    this.active = false;
-  }
 }
