@@ -17,6 +17,11 @@ class ViewHome  extends PageViewElement {
         <h2>Home</h2>
       </div>
       <p>Esto es el home!!! y puedes <a href="/contact">contactar con nosotros</a> </p>
+      
+      <p>
+        <a href="/blog/Bienvenidos">Ir la nota de bienvenida </a>
+      </p>
+
     `;
   }
 }

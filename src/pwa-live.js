@@ -5,6 +5,7 @@ import './views/view-about';
 import './views/view-home';
 import './views/view-contact';
 import './views/view-map';
+import './views/view-blog';
 import 'dile-tabs/dile-tabs';
 import 'dile-pages/dile-pages';
 
@@ -41,6 +42,7 @@ class PwaLive extends LitElement {
 	static get properties() {
 		return {
 			page: { type: String },
+			segments: { type: Array },
 		};
 	}
 
@@ -66,6 +68,7 @@ class PwaLive extends LitElement {
 				<dile-tab name="about">About</dile-tab>
 				<dile-tab name="contact">Contact me</dile-tab>
 				<dile-tab name="map">Mapa</dile-tab>
+				<dile-tab name="blog">Blog</dile-tab>
 			</dile-tabs>			
 			
 			<dile-pages selected="${this.page}" attrForSelected="name">
@@ -73,17 +76,10 @@ class PwaLive extends LitElement {
 				<view-about name="about" ?active=${this.page == 'about'}></view-about>
 				<view-contact name="contact" ?active=${this.page == 'contact'}></view-contact>
 				<view-map name="map" ?active=${this.page == 'map'}></view-map>
+				<view-blog name="blog" ?active=${this.page == 'blog'} .segments="${this.segments}"></view-blog>
 			</dile-pages>
 
-			<button @click="${this.navegar}" data-navigation-path="map">Ir al mapa</button>
-			<button @click="${this.navegar}" data-navigation-path="about">Ir al Sobre nosotros</button>
-			<a href="/home"><button>ir a Home</button></a>
 		`;
-	}
-
-	navegar(e) {
-		let page = e.target.getAttribute('data-navigation-path');
-		this.navigate(page);
 	}
 
 	selectedChanged(e) {
@@ -92,11 +88,21 @@ class PwaLive extends LitElement {
 	}
 
 	handleNavigation(path) {
-		console.log(path);
-		if(path == '/') {
-			this.page = 'home';
-		} else {
-			this.page = path.slice(1);
+		let urlDecoded = this._decodeUrl(path);
+		console.log('handleNavigation', path, urlDecoded);
+		this.page = urlDecoded.page;
+		this.segments = urlDecoded.segments; 
+	}
+
+	_decodeUrl(path){
+		path = decodeURIComponent(path);
+		let page = (path === '/') ? 'home' : path.slice(1);
+		//extract segments
+		const segments = page.split('/');
+		page = segments[0];
+		return {
+			page,
+			segments
 		}
 	}
 
