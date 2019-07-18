@@ -50,6 +50,10 @@ class PwaLive extends LitElement {
 		return html`
 			<h1>My App</h1>
 
+			<!-- <a href="/home">Home</a> |
+			<a href="/about">About</a> |
+			<a href="/contact">Contact</a> -->
+
 			<dile-tabs selected="${this.page}" attrForSelected="name" @dile-tabs-selected-changed="${this.selectedChanged}">
 				<dile-tab name="home">Home</dile-tab>
 				<dile-tab name="about">About</dile-tab>
