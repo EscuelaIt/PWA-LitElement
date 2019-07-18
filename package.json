@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "dile-pages": "^1.1.2",
-    "dile-tabs": "^2.0.4",
+    "dile-tabs": "^2.0.6",
     "lit-element": "^2.0.1",
     "lit-html": "^1.0.0",
     "pwa-helpers": "^0.9.1"
