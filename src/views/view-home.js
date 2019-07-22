@@ -1,5 +1,7 @@
 import { LitElement, html, css } from 'lit-element';
 import { PageViewElement } from './page-view-element';
+import { store } from '../redux/store';
+import { navigateDelay } from '../redux/actions/app-actions';
 
 class ViewHome  extends PageViewElement {
 
@@ -22,7 +24,12 @@ class ViewHome  extends PageViewElement {
         <a href="/blog/Bienvenidos">Ir la nota de bienvenida </a>
       </p>
 
+      <button @click="${this.delayPageChange}">Ir al mapa dentro de 3 segundos</button>
     `;
+  }
+
+  delayPageChange() {
+    store.dispatch(navigateDelay('map'));
   }
 }
 

@@ -1,6 +1,11 @@
 import { LitElement, html, css } from 'lit-element';
 import { installRouter } from 'pwa-helpers/router.js';
 
+// redux
+import { connect } from 'pwa-helpers/connect-mixin.js';
+import { store } from './redux/store';
+import { updatePage } from './redux/actions/app-actions';
+
 import './views/view-about';
 import './views/view-home';
 import './views/view-contact';
@@ -9,7 +14,7 @@ import './views/view-blog';
 import 'dile-tabs/dile-tabs';
 import 'dile-pages/dile-pages';
 
-class PwaLive extends LitElement {
+class PwaLive extends connect(store)(LitElement) {
 	static get styles() {
 		return css`
 			:host {
@@ -48,7 +53,7 @@ class PwaLive extends LitElement {
 
 	constructor() {
 		super();
-		this.page = 'home';
+		//this.page = 'home';
 		installRouter((location) => this.handleNavigation(location.pathname));
 
 		this.addEventListener('navigate', (e) => this.navigate(e.detail));
@@ -78,7 +83,7 @@ class PwaLive extends LitElement {
 				<view-map name="map" ?active=${this.page == 'map'}></view-map>
 				<view-blog name="blog" ?active=${this.page == 'blog'} .segments="${this.segments}"></view-blog>
 			</dile-pages>
-
+			
 		`;
 	}
 
@@ -90,7 +95,7 @@ class PwaLive extends LitElement {
 	handleNavigation(path) {
 		let urlDecoded = this._decodeUrl(path);
 		console.log('handleNavigation', path, urlDecoded);
-		this.page = urlDecoded.page;
+		store.dispatch(updatePage(urlDecoded.page));
 		this.segments = urlDecoded.segments; 
 	}
 
@@ -109,6 +114,11 @@ class PwaLive extends LitElement {
 	navigate(page) {
 		window.history.pushState({}, '', '/' + page);
 		this.handleNavigation(window.location.pathname);
+	}
+
+	stateChanged(state) {
+		console.log('app-live', state);
+		this.page = state.page;
 	}
 }
 
