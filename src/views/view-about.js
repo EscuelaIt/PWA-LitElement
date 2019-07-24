@@ -4,7 +4,11 @@ import { PageViewElement } from './page-view-element';
 // redux
 import { connect } from 'pwa-helpers/connect-mixin.js';
 import { store } from '../redux/store';
-import { incrementarContador, decrementarContador } from '../redux/actions/app-actions';
+import { incrementarContador, decrementarContador } from '../redux/actions/counter-actions';
+import { counter } from '../redux/reducers/counter-reducer.js';
+store.addReducers({
+  counter
+})
 
 class ViewAbout  extends connect(store)(PageViewElement) {
 
@@ -39,7 +43,7 @@ class ViewAbout  extends connect(store)(PageViewElement) {
 
   stateChanged(state) {
     // console.log('Soy About y el estado es', state);
-    this.counter = state.counter;
+    this.counter = state.counter.counter;
   }
 
   incrementar() {

@@ -1,8 +1,11 @@
 import { 
   createStore,
   applyMiddleware,
-  compose
+  compose,
+  combineReducers
 } from 'redux';
+
+import { lazyReducerEnhancer } from 'pwa-helpers/lazy-reducer-enhancer.js';
 
 import thunk from 'redux-thunk';
 
@@ -12,9 +15,19 @@ const devCompose = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 import { app } from './reducers/app-reducer.js';
 
+// const combinedReducers = combineReducers({
+//   app: app,
+//   counter: counter,
+// });
+
 export const store = createStore(
-  app,
+  state => state,
   devCompose(
     applyMiddleware(thunk),
+    lazyReducerEnhancer(combineReducers)
   )
 );
+
+store.addReducers({
+  app: app
+});

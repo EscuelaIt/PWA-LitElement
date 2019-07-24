@@ -1,31 +1,40 @@
 
 import {
-  INCREMENTAR_CONTADOR,
-  DECREMENTAR_CONTADOR,
-  UPDATE_PAGE
+  UPDATE_PAGE,
+  START_LOADING,
+  STOP_LOADING,
+  UPDATE_SEGMENTS
 } from '../actions/app-actions';
 
 const initialState = {
-  counter: 0,
-  page: 'home'
+  page: 'home',
+  pageSection: '',
+  pageParameter: '',
+  loading: false,
 }
 
 export const app = (state = initialState, action) => {
   switch(action.type) {
-    case INCREMENTAR_CONTADOR:
+    case START_LOADING:
       return {
         ...state,
-        counter: state.counter + 1,
+        loading: true,
       }
-    case DECREMENTAR_CONTADOR:
+    case STOP_LOADING:
       return {
         ...state,
-        counter: state.counter - 1,
+        loading: false,
       }
     case UPDATE_PAGE:
       return {
         ...state,
         page: action.page
+      }
+    case UPDATE_SEGMENTS:
+      return {
+        ...state,
+        pageSection: action.pageSection,
+        pageParameter: action.pageParameter
       }
     default:
       return state;

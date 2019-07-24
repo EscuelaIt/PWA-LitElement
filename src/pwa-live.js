@@ -4,15 +4,16 @@ import { installRouter } from 'pwa-helpers/router.js';
 // redux
 import { connect } from 'pwa-helpers/connect-mixin.js';
 import { store } from './redux/store';
-import { updatePage } from './redux/actions/app-actions';
+import { navigate } from './redux/actions/app-actions';
 
-import './views/view-about';
-import './views/view-home';
-import './views/view-contact';
-import './views/view-map';
-import './views/view-blog';
+// import './views/view-about';
+// import './views/view-home';
+// import './views/view-contact';
+// import './views/view-map';
+// import './views/view-blog';
 import 'dile-tabs/dile-tabs';
 import 'dile-pages/dile-pages';
+import 'dile-spinner/dile-spinner-modal';
 
 class PwaLive extends connect(store)(LitElement) {
 	static get styles() {
@@ -46,6 +47,7 @@ class PwaLive extends connect(store)(LitElement) {
 
 	static get properties() {
 		return {
+			loading: { type: Boolean },
 			page: { type: String },
 			segments: { type: Array },
 		};
@@ -73,7 +75,7 @@ class PwaLive extends connect(store)(LitElement) {
 				<dile-tab name="about">About</dile-tab>
 				<dile-tab name="contact">Contact me</dile-tab>
 				<dile-tab name="map">Mapa</dile-tab>
-				<dile-tab name="blog">Blog</dile-tab>
+				<dile-tab name="headquarters">Sedes</dile-tab>
 			</dile-tabs>			
 			
 			<dile-pages selected="${this.page}" attrForSelected="name">
@@ -81,9 +83,11 @@ class PwaLive extends connect(store)(LitElement) {
 				<view-about name="about" ?active=${this.page == 'about'}></view-about>
 				<view-contact name="contact" ?active=${this.page == 'contact'}></view-contact>
 				<view-map name="map" ?active=${this.page == 'map'}></view-map>
-				<view-blog name="blog" ?active=${this.page == 'blog'} .segments="${this.segments}"></view-blog>
+				<view-headquarters name="headquarters" ?active=${this.page == 'headquarters'}></view-headquarters>
+				<view-404 name="404" ?active=${this.page == '404'}></view-404>
 			</dile-pages>
 			
+			<dile-spinner-modal ?active="${this.loading}"></dile-spinner-modal>
 		`;
 	}
 
@@ -93,22 +97,8 @@ class PwaLive extends connect(store)(LitElement) {
 	}
 
 	handleNavigation(path) {
-		let urlDecoded = this._decodeUrl(path);
-		console.log('handleNavigation', path, urlDecoded);
-		store.dispatch(updatePage(urlDecoded.page));
-		this.segments = urlDecoded.segments; 
-	}
-
-	_decodeUrl(path){
 		path = decodeURIComponent(path);
-		let page = (path === '/') ? 'home' : path.slice(1);
-		//extract segments
-		const segments = page.split('/');
-		page = segments[0];
-		return {
-			page,
-			segments
-		}
+		store.dispatch(navigate(path));
 	}
 
 	navigate(page) {
@@ -118,7 +108,8 @@ class PwaLive extends connect(store)(LitElement) {
 
 	stateChanged(state) {
 		console.log('app-live', state);
-		this.page = state.page;
+		this.page = state.app.page;
+		this.loading = state.app.loading;
 	}
 }
 
