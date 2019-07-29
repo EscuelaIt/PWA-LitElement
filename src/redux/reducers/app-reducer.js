@@ -3,7 +3,9 @@ import {
   UPDATE_PAGE,
   START_LOADING,
   STOP_LOADING,
-  UPDATE_SEGMENTS
+  UPDATE_SEGMENTS,
+  UPDATE_METADATA,
+  SEND_FEEDBACK
 } from '../actions/app-actions';
 
 const initialState = {
@@ -11,6 +13,8 @@ const initialState = {
   pageSection: '',
   pageParameter: '',
   loading: false,
+  metadata: null,
+  feedback: null,
 }
 
 export const app = (state = initialState, action) => {
@@ -36,6 +40,17 @@ export const app = (state = initialState, action) => {
         pageSection: action.pageSection,
         pageParameter: action.pageParameter
       }
+    case UPDATE_METADATA:
+      return {
+        ...state,
+        metadata: action.metadata
+      }
+    case SEND_FEEDBACK:
+      console.log('en el reducer.... case send_feedback')
+      return {
+        ...state,
+        feedback: action.feedback
+      };
     default:
       return state;
   }

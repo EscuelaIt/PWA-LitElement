@@ -2,6 +2,28 @@ export const UPDATE_PAGE = 'UPDATE_PAGE';
 export const START_LOADING = 'START_LOADING';
 export const STOP_LOADING = 'STOP_LOADING';
 export const UPDATE_SEGMENTS = 'UPDATE_SEGMENTS';
+export const UPDATE_METADATA = 'UPDATE_METADATA';
+export const SEND_FEEDBACK = 'SEND_FEEDBACK';
+
+const sendFeedback = (feedback) => {
+  return {
+    type: SEND_FEEDBACK,
+    feedback
+  }
+}
+
+export const positiveFeedback = (msg) => {
+  return sendFeedback({
+    msg,
+    status: 'success'
+  })
+}
+export const negativeFeedback = (msg) => {
+  return sendFeedback({
+    msg,
+    status: 'error'
+  })
+}
 
 export const startLoading = () => {
   return {
@@ -103,6 +125,13 @@ const decodeUrl = (url) => {
   return {
     page,
     segments
+  }
+}
+
+export const updateMetadata = (metadata) => {
+  return {
+    type: UPDATE_METADATA,
+    metadata
   }
 }
 

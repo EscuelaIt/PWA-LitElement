@@ -5,19 +5,22 @@ import { PageViewElement } from './page-view-element';
 import { connect } from 'pwa-helpers/connect-mixin.js';
 import { store } from '../redux/store';
 import { incrementarContador, decrementarContador } from '../redux/actions/counter-actions';
+import { updateMetadata } from '../redux/actions/app-actions';
 import { counter } from '../redux/reducers/counter-reducer.js';
 store.addReducers({
   counter
-})
+});
+
+import { viewCSS } from '../styles/stylesView';
 
 class ViewAbout  extends connect(store)(PageViewElement) {
 
   static get styles() {
-    return css`
-      :host {
-        display: block;
+    return [viewCSS, css`
+      p {
+        color: orange;
       }
-    `;
+    `];
   }
 
   static get properties() {
@@ -52,6 +55,15 @@ class ViewAbout  extends connect(store)(PageViewElement) {
 
   decrementar() {
     store.dispatch(decrementarContador());
+  }
+
+  changeMetadata() {
+    store.dispatch(updateMetadata({
+      title: 'Sobre nosotros',
+      description: 'Esto es info de nuestra empresa',
+      url: window.location.href,
+      image: '/images/escuelait.png'
+    }));
   }
 }
 
