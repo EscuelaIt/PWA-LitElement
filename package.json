@@ -8,7 +8,9 @@
   "dependencies": {
     "dile-app-drawer": "^1.1.2",
     "dile-hamburger": "^1.1.0",
+    "dile-input": "^1.4.1",
     "dile-pages": "^1.1.2",
+    "dile-rounded-button": "^1.0.0",
     "dile-smooth-scroll": "^1.0.0",
     "dile-spinner": "^2.0.1",
     "dile-tabs": "^2.0.6",

@@ -95,7 +95,7 @@ class PwaLive extends connect(store)(LitElement) {
 		return {
 			loading: { type: Boolean },
 			page: { type: String },
-			segments: { type: Array },
+			section: { type: String },
 		};
 	}
 
@@ -119,6 +119,7 @@ class PwaLive extends connect(store)(LitElement) {
 							<dile-tab name="contact">Contact me</dile-tab>
 							<dile-tab name="map">Mapa</dile-tab>
 							<dile-tab name="headquarters">Sedes</dile-tab>
+							<dile-tab name="pelis/list">pelis</dile-tab>
 						</dile-tabs>		
 					</div>
 					<div slot="menumobile" class="menumobile">
@@ -148,6 +149,7 @@ class PwaLive extends connect(store)(LitElement) {
 				<view-contact name="contact" ?active=${this.page == 'contact'}></view-contact>
 				<view-map name="map" ?active=${this.page == 'map'}></view-map>
 				<view-headquarters name="headquarters" ?active=${this.page == 'headquarters'}></view-headquarters>
+				<view-pelis name="pelis" ?active=${this.page == 'pelis'} section="${this.section}"></view-pelis>
 				<view-404 name="404" ?active=${this.page == '404'}></view-404>
 			</dile-pages>
 			
@@ -177,6 +179,7 @@ class PwaLive extends connect(store)(LitElement) {
 		console.log('app-live', state);
 		this.page = state.app.page;
 		this.loading = state.app.loading;
+		this.section = state.app.pageSection;
 	}
 }
 

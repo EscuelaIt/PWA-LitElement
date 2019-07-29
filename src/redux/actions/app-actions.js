@@ -41,7 +41,7 @@ export const navigate = (path) => dispatch => {
   const url = (path === '/') ? 'home' : path.slice(1);
   // separo segmentos
   const decodedUrl = decodeUrl(url);
-  console.log(decodedUrl);
+  //console.log(decodedUrl);
   dispatch(loadPage(decodedUrl.page));
   dispatch(loadSection(decodedUrl.page, decodedUrl.segments))
 }
@@ -59,6 +59,21 @@ const loadSection = (page, segments) => (dispatch) => {
         case 'barcelona':
           import('../../headquarters/headquarters-barcelona-view');
           break
+        default:
+          dispatch(loadPage('404'));
+      }
+    } else if(page == 'pelis') {
+      switch(pageSection) {
+        case 'list':
+          import('../../pelis/pelis-list-view');
+          break;
+        case 'insert':
+          import('../../pelis/pelis-insert-view');
+          break
+        case 'edit':
+          import('../../pelis/pelis-edit-view');
+          break
+            
         default:
           dispatch(loadPage('404'));
       }
@@ -96,6 +111,9 @@ export const loadPage = (page) => (dispatch) => {
     case 'headquarters':
       import('../../views/view-headquarters.js');
       break;
+    case 'pelis':
+        import('../../views/view-pelis.js');
+        break;
     default: 
       import('../../views/view-404.js');
       page = '404';

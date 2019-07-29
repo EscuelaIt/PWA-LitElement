@@ -19,7 +19,7 @@ class UpdateMetadata  extends connect(store)(LitElement) {
   updated(changedProperties) {
     if(changedProperties.has('metadata')) {
       if(this.metadata) {
-        console.log('voy a llamar al método que cambia la metadata, con', this.metadata)
+        //console.log('voy a llamar al método que cambia la metadata, con', this.metadata)
         updateMetadata(this.metadata)
       }
     }
