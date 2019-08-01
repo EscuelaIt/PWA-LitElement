@@ -24,9 +24,10 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
-    "es-dev-server": "^1.5.0",
     "@open-wc/building-rollup": "^0.9.0",
+    "es-dev-server": "^1.5.0",
     "rimraf": "^2.6.3",
-    "rollup": "^1.15.4"
+    "rollup": "^1.15.4",
+    "rollup-plugin-cpy": "^2.0.1"
   }
 }
