@@ -11,6 +11,7 @@ class ViewHome  extends FeedbackEmmiterMixin(PageViewElement) {
       :host {
         display: block;
       }
+      img { max-width: 100%;}
     `;
   }
 
@@ -29,6 +30,9 @@ class ViewHome  extends FeedbackEmmiterMixin(PageViewElement) {
 
       <button @click="${this.enviarFeedbackPositivo}">Enviar feedback positivo</button>
       <button @click="${this.enviarFeedbackNegativo}">Enviar feedback negativo</button>
+      <p>
+      <img src="https://escuela.it/uploads/curso-pwa-litelement-94.jpg">
+      </p>
       <hr>
       <a href="/headquarters/madrid">Sede de Madrid</a>
 			<a href="/headquarters/barcelona">Sede de Barcelona</a>

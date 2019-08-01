@@ -32,7 +32,7 @@ export default [
       ...config[0].plugins,
       cpy({
         // copy over all images files
-        files: ['**/*.png', '**/*.jpg', 'manifest.json', '_redirects', 'node_modules/axios/dist/axios.min.js'],
+        files: ['**/*.png', '**/*.jpg', 'manifest.json', '_redirects', 'node_modules/axios/dist/axios.min.js', 'favicon.ico'],
         dest: 'dist',
         options: {
           // parents makes sure to preserve the original folder structure
