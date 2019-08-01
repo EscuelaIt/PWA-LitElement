@@ -133,7 +133,7 @@ export const navigateDelay = (page) => (dispatch) => {
   dispatch(startLoading());
   setTimeout(() => {
     dispatch(stopLoading());
-    dispatch(updatePage(page));
+    dispatch(navigate(page));
   }, 3000);
 }
 

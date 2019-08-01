@@ -36,7 +36,7 @@ class ViewHome  extends FeedbackEmmiterMixin(PageViewElement) {
   }
 
   delayPageChange() {
-    store.dispatch(navigateDelay('map'));
+    store.dispatch(navigateDelay('/map'));
   }
 
   enviarFeedbackPositivo() {
