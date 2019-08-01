@@ -3,7 +3,9 @@
   "license": "MIT",
   "scripts": {
     "start": "es-dev-server --app-index index.html --node-resolve --open --watch",
-    "start:compatibility": "es-dev-server --app-index index.html --compatibility all --node-resolve --open --watch"
+    "start:compatibility": "es-dev-server --app-index index.html --compatibility all --node-resolve --open --watch",
+    "start:build": "cd dist && es-dev-server --open",
+    "build": "rimraf dist && rollup -c rollup.config.js"
   },
   "dependencies": {
     "dile-app-drawer": "^1.1.2",
@@ -22,6 +24,9 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
-    "es-dev-server": "^1.5.0"
+    "es-dev-server": "^1.5.0",
+    "@open-wc/building-rollup": "^0.9.0",
+    "rimraf": "^2.6.3",
+    "rollup": "^1.15.4"
   }
 }
