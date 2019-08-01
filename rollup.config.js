@@ -14,7 +14,7 @@ export default [
       ...config.plugins,
       cpy({
         // copy over all images files
-        files: ['**/*.png', '**/*.jpg', 'manifest.json'],
+        files: ['**/*.png', '**/*.jpg', 'manifest.json', '_redirects'],
         dest: 'dist',
         options: {
           // parents makes sure to preserve the original folder structure
