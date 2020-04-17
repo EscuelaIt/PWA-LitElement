@@ -4,31 +4,31 @@
   "scripts": {
     "start": "es-dev-server --app-index index.html --node-resolve --open --watch",
     "start:compatibility": "es-dev-server --app-index index.html --compatibility all --node-resolve --open --watch",
-    "start:build": "cd dist && es-dev-server --open",
-    "build": "rimraf dist && rollup -c rollup.config.js && workbox generateSW workbox-config.js"
+    "start:build": "npm run build && es-dev-server --root-dir dist --app-index index.html --open --compatibility none",
+    "build": "rimraf dist && rollup -c rollup.config.js"
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.19.2",
     "dile-app-drawer": "^1.1.2",
-    "dile-hamburger": "^1.1.0",
+    "dile-hamburger": "^1.2.1",
     "dile-input": "^1.4.1",
     "dile-pages": "^1.1.2",
-    "dile-rounded-button": "^1.0.0",
-    "dile-smooth-scroll": "^1.0.0",
-    "dile-spinner": "^2.0.1",
-    "dile-tabs": "^2.0.6",
-    "dile-toast": "^1.0.6",
-    "lit-element": "^2.0.1",
-    "lit-html": "^1.0.0",
+    "dile-rounded-button": "^1.2.1",
+    "dile-smooth-scroll": "^1.1.0",
+    "dile-spinner": "^2.0.4",
+    "dile-tabs": "^2.1.0",
+    "dile-toast": "^1.4.0",
+    "lit-element": "^2.3.1",
+    "lit-html": "^1.2.1",
     "pwa-helpers": "^0.9.1",
-    "redux": "^4.0.4",
+    "redux": "^4.0.5",
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
-    "@open-wc/building-rollup": "^0.9.0",
-    "es-dev-server": "^1.5.0",
+    "@open-wc/building-rollup": "^1.0.0",
+    "es-dev-server": "^1.46.2",
     "rimraf": "^2.6.3",
-    "rollup": "^1.15.4",
+    "rollup": "^2.3.4",
     "rollup-plugin-cpy": "^2.0.1",
     "workbox-cli": "^4.3.1"
   }
