@@ -8,11 +8,13 @@
     "build": "rimraf dist && rollup -c rollup.config.js"
   },
   "dependencies": {
+    "@dile/dile-button": "^3.0.1",
     "axios": "^0.19.2",
     "dile-app-drawer": "^1.1.2",
     "dile-hamburger": "^1.2.1",
     "dile-input": "^1.4.1",
     "dile-pages": "^1.1.2",
+    "dile-password": "^1.0.1",
     "dile-rounded-button": "^1.2.1",
     "dile-smooth-scroll": "^1.1.0",
     "dile-spinner": "^2.0.4",

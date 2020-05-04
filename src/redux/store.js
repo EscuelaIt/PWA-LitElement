@@ -14,6 +14,7 @@ import thunk from 'redux-thunk';
 const devCompose = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 import { app } from './reducers/app-reducer.js';
+import { user } from './reducers/user-reducer.js';
 
 // const combinedReducers = combineReducers({
 //   app: app,
@@ -29,5 +30,6 @@ export const store = createStore(
 );
 
 store.addReducers({
-  app: app
+  app,
+  user 
 });

@@ -99,6 +99,9 @@ export const loadPage = (page) => (dispatch) => {
     case 'home':
       import('../../views/view-home.js');
       break;
+    case 'login':
+      import('../../views/view-login.js');
+      break;
     case 'about':
       import('../../views/view-about.js');
       break;
@@ -152,4 +155,6 @@ export const updateMetadata = (metadata) => {
     metadata
   }
 }
+
+
 

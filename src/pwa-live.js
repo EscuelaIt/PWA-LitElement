@@ -143,7 +143,7 @@ class PwaLive extends connect(store)(LitElement) {
 				</menu-responsive>
 				
 				<div>
-					<eit-icon icon="account_box"></eit-icon>	
+					<a href="/login"><eit-icon icon="account_box"></eit-icon></a>
 				</div>
 			</header>
 			<responsive-banner></responsive-banner>
@@ -155,6 +155,7 @@ class PwaLive extends connect(store)(LitElement) {
 			
 			<dile-pages selected="${this.page}" attrForSelected="name">
 				<view-home name="home" ?active=${this.page == 'home'}></view-home>
+				<view-login name="login" ?active=${this.page == 'login'}></view-login>
 				<view-about name="about" ?active=${this.page == 'about'}></view-about>
 				<view-contact name="contact" ?active=${this.page == 'contact'}></view-contact>
 				<view-map name="map" ?active=${this.page == 'map'}></view-map>
