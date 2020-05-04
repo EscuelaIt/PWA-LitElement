@@ -32,7 +32,11 @@ export const getPelis = () => (dispatch) => {
 
 export const peliInsert = (peli) => (dispatch) => {
   dispatch(startLoading());
-  axios.post(urlPelisResource, peli)
+  axios.post(urlPelisResource, peli, {
+    headers: {
+      "token": store.getState().user.token
+    }
+  })
     .then(response => {
       dispatch(getPelis());
       dispatch(positiveFeedback('peli insertada correctamente'));
@@ -76,6 +80,18 @@ export const peliEdit = (peli) => (dispatch) => {
     });
 }
 
+export const peliDelete = (peli) => (dispatch) => {
+  dispatch(startLoading());
+  axios.delete(`${urlPelisResource}/${peli.id}`)
+    .then(response => {
+      dispatch(getPelis());
+      dispatch(positiveFeedback('peli Borrada correctamente'));
+    })
+    .catch(err => {
+      dispatch(negativeFeedback('error al borrar'));
+      dispatch(stopLoading());
+    });
+}
 
 const savePeliId = (peli) => {
   return {

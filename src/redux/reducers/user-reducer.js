@@ -4,7 +4,7 @@ import {
 
 const initialState = {
   loggedIn: false,
-  token: null,
+  token: '',
 }
 
 export const user = (state = initialState, action) => {

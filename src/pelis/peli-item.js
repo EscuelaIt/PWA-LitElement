@@ -1,4 +1,6 @@
 import { LitElement, html, css } from 'lit-element';
+import { store } from '../redux/store';
+import { peliDelete } from '../redux/actions/pelis-actions';
 
 class PeliItem  extends LitElement {
 
@@ -56,6 +58,11 @@ class PeliItem  extends LitElement {
         </div>
       </div>
     `;
+  }
+
+  delete(e) {
+    e.preventDefault();
+    store.dispatch(peliDelete(this.peli))
   }
 }
 

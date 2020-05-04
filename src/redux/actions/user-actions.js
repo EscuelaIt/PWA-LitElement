@@ -49,11 +49,12 @@ export const userLogin = (userData) => dispatch => {
 export const logout = () => {
   return updateUser({
     loggedIn: false,
-    token: null,
+    token: '',
   })
 }
 
 export const updateUser = (userData) => {
+  axios.defaults.headers.common['token'] = userData.token;
   return {
     type: UPDATE_USER,
     data: userData,
