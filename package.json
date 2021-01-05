@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@dile/dile-button": "^3.0.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "dile-app-drawer": "^1.1.2",
     "dile-hamburger": "^1.2.1",
     "dile-input": "^1.4.1",
